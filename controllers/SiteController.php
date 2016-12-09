@@ -8,9 +8,12 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\User;
+use yii\helpers\Url;
 
 class SiteController extends Controller
 {
+    public $layout = 'site_layout';
     /**
      * @inheritdoc
      */
@@ -71,15 +74,49 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            if(Yii::$app->user->identity->role == User::ROLE_USER){
+                return $this->redirect(Url::home(true).'cabinet/index');
+            }
+            elseif(Yii::$app->user->identity->role == User::ROLE_ADMIN)
+            {
+                return $this->redirect(Url::home(true).'admin/index');
+            }
         }
-
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            if(Yii::$app->user->identity->role == User::ROLE_USER){
+                return $this->redirect(Url::home(true).'cabinet/index');
+            }
+            elseif(Yii::$app->user->identity->role == User::ROLE_ADMIN)
+            {
+                return $this->redirect(Url::home(true).'admin/index');
+            }
         }
         return $this->render('login', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionReg()
+    {
+        $model = new User(['scenario' => 'registration']);
+
+        if(Yii::$app->request->isPost)
+        {
+            $post = Yii::$app->request->post();
+            if($model->load($post) && $model->validate()):
+                if($user = $model->reg()):
+                    if($user->active === User::STATUS_ACTIVE ):
+                        if(Yii::$app->getUser()->login($user)):
+                            return $this->redirect('/site/index');
+                        endif;
+                    endif;
+                endif;
+            endif;
+        }
+
+        return $this->render('reg',[
+            'model' => $model
         ]);
     }
 
@@ -93,33 +130,5 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 }
