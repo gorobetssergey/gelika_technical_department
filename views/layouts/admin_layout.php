@@ -7,13 +7,10 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use app\assets\SiteAsset;
+use app\assets\AdminAsset;
 use app\models\User;
-use yii\helpers\Url;
-use yii\widgets\ActiveForm;
 
-SiteAsset::register($this);
+AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
