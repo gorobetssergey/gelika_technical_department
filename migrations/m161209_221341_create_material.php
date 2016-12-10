@@ -6,26 +6,26 @@ class m161209_221341_create_material extends Migration
 {
     public function safeUp()
     {
-        $this->createTable('dem',[
+        $this->createTable('demention',[
             'id' => $this->primaryKey(),
-            'name' => $this->string(10)
+            'name' => $this->string(10)->notNull()
         ]);
 
         $this->createTable('material',[
             'id' => $this->primaryKey(),
-            'name' => $this->string(50),
-            'dem' => $this->string(10)
+            'name' => $this->string(50)->notNull(),
+            'demention' => $this->integer(11)->notNull()
         ]);
         $this->createIndex(
-            'id_dem',
+            'id_demention',
             'material',
-            'dem'
+            'demention'
         );
         $this->addForeignKey(
-            'fx_dem',
+            'fx_demention',
             'material',
-            'dem',
-            'dem',
+            'demention',
+            'demention',
             'id',
             'CASCADE'
         );
@@ -34,6 +34,6 @@ class m161209_221341_create_material extends Migration
     public function safeDown()
     {
         $this->dropTable('material');
-        $this->dropTable('dem');
+        $this->dropTable('demention');
     }
 }

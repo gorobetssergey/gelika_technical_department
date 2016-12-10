@@ -2,44 +2,27 @@
 
 namespace app\controllers;
 
-use app\models\ProductSearch;
-use app\models\ProductTree;
+use app\models\Demention;
+
 use Yii;
 use yii\db\Exception;
 use yii\filters\AccessControl;
 use app\models\User;
-use yii\helpers\Url;
-use app\models\Material;
-use app\models\MaterialSearch;
-use app\models\Unit;
-use app\models\UnitSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\Product;
-use app\models\StorageAMaterial;
-use app\models\StorageAMaterialSearch;
-use app\models\StorageAProduct;
-use app\models\StorageAProductSearch;
-use app\models\StorageBMaterial;
-use app\models\StorageBMaterialSearch;
-use app\models\StorageBProduct;
-use app\models\StorageBProductSearch;
-use app\models\StorageMaterialSearch;
-use app\models\StorageProductSearch;
+use yii\helpers\Url;
 
 class AdminController extends \yii\web\Controller
 {
     public $layout = 'admin_layout';
     public function behaviors() {
-        if(Yii::$app->user->identity->role==\app\models\User::ROLE_ADMIN) {
+        if(Yii::$app->user->identity->role==User::ROLE_ADMIN) {
             return [
                 'access' => [
                     'class' => AccessControl::className(),
                     'rules' => [
                         [
                             'actions' => [
-                                'index'
+                                'index','add_demention'
                             ],
                             'allow' => true,
                             'roles' => ['@'],
@@ -53,7 +36,7 @@ class AdminController extends \yii\web\Controller
                     ],
                 ],
             ];
-        }elseif(Yii::$app->user->identity->role==\app\models\User::ROLE_USER){
+        }elseif(Yii::$app->user->identity->role==User::ROLE_USER){
             return [
                 'access' => [
                     'class' => AccessControl::className(),
@@ -93,4 +76,23 @@ class AdminController extends \yii\web\Controller
     {
         return $this->render('index');
     }
+
+    public function actionAdd_demention()
+    {
+        $model = new Demention();
+        if(Yii::$app->request->isPost)
+        {
+            $post = Yii::$app->request->post();
+            if($model->load($post) && $model->validate()):
+                if($model->save()):
+                    return $this->redirect(Url::toRoute('index'));
+                endif;
+            endif;
+        }
+
+        return $this->render('add_dem',[
+            'model' => $model
+        ]);
+    }
+
 }
