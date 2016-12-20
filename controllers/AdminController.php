@@ -79,7 +79,7 @@ class AdminController extends \yii\web\Controller
 
     public function actionAdd_demention()
     {
-        $model = new Demention();
+        $model=new Demention();
         if(Yii::$app->request->isPost)
         {
             $post = Yii::$app->request->post();
