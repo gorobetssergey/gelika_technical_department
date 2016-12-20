@@ -40,7 +40,11 @@ class Demention extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+<<<<<<< HEAD
             'name' => 'Назва',
+=======
+            'name' => 'Name',
+>>>>>>> 19799189d71326cf704ffef5f1e77386baf3c7a5
         ];
     }
 
