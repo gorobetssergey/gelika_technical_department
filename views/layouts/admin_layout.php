@@ -47,16 +47,9 @@ AdminAsset::register($this);
         ];
     else:
         if(Yii::$app->user->identity->role==User::ROLE_ADMIN):
-            $menuItems = [
-<<<<<<< HEAD
-                ['label' => 'Адмінка', 'url' => ['/admin/index']],
-                ['label' => 'Добавити Од.Вим.', 'url' => ['/admin/add_demention']],
-=======
-                ['label' => 'Админка', 'url' => ['/admin/index']],
-                ['label' => 'Добавить Ед.Из.', 'url' => ['/admin/add_demention']],
->>>>>>> 19799189d71326cf704ffef5f1e77386baf3c7a5
+            $menuItems[] = [
+                'label' => 'Админка', 'url' => ['/admin/index'],
             ];
-
         endif;
         $menuItems[]=[
             'label' => 'Выйти (' . Yii::$app->user->identity->email . ')',

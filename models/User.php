@@ -70,9 +70,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'email' => 'Почта',
+            'email' => Yii::t('app', 'Email'),
             'active' => Yii::t('app', 'Active'),
-            'password' => 'Пароль',
+            'password' => Yii::t('app', 'Password'),
             'repassword' => Yii::t('app', 'Repassword'),
             'token' => Yii::t('app', 'Token'),
             'role' => Yii::t('app', 'Role'),
@@ -162,6 +162,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $transaction = Yii::$app->db->beginTransaction();
         try {
+            $res1 = false;
+            $res2 = false;
+
             $user = new User();
             $user->email = $this->email;
             $user->setPassword($this->password);
