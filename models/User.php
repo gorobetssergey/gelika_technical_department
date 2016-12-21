@@ -70,15 +70,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'email' => Yii::t('app', 'Email'),
+            'email' => 'Пошта',
             'active' => Yii::t('app', 'Active'),
-            'password' => Yii::t('app', 'Password'),
+            'password' => 'Пароль',
             'repassword' => Yii::t('app', 'Repassword'),
             'token' => Yii::t('app', 'Token'),
             'role' => Yii::t('app', 'Role'),
             'created' => Yii::t('app', 'Created'),
             'auth' => Yii::t('app', 'Auth'),
-            'repet_password' => 'Повторить пароль'
+            'repet_password' => 'Повторити пароль'
         ];
     }
 

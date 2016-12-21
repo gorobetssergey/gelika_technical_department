@@ -1,12 +1,8 @@
 <?php
-
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
 ?>
-<div class="container">
-    <div class="row">
-        <h2>АДМИНКА</h2>
-        
-    </div>
-</div>
+<h2>Адмінка</h2>

@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="level level-grey level-b-70">
     <div class="container">
-        <h3 class="text-center">Регистрация</h3>
+        <h3 class="text-center">Реєстрація</h3>
 
         <div class="col-md-4"></div>
         <div class="col-md-4">
@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
                 <?= $form->field($model, 'repet_password')->passwordInput() ?>
 
                 <div class="center">
-                    <?= Html::submitButton('Регистрация', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::submitButton('Реєстрація', ['class' => 'btn btn-primary']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>

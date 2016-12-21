@@ -31,7 +31,7 @@ SiteAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Boards',
+        'brandLabel' => 'GELIKA',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -41,21 +41,21 @@ SiteAsset::register($this);
     $menuItems = [];
     if(Yii::$app->user->isGuest):
         $menuItems[]=[
-            'label' => 'Войти',
+            'label' => 'Увійти',
             'url' => ['/site/login']
         ];
         $menuItems[]=[
-            'label' => 'Регистрация',
+            'label' => 'Реєстрація',
             'url' => ['/site/reg']
         ];
     else:
         if(Yii::$app->user->identity->role==User::ROLE_ADMIN):
             $menuItems[] = [
-                'label' => 'Админка', 'url' => ['/admin/index'],
+                'label' => 'Адмінка', 'url' => ['/admin/index'],
             ];
         endif;
         $menuItems[]=[
-            'label' => 'Выйти (' . Yii::$app->user->identity->email . ')',
+            'label' => 'Вийти (' . Yii::$app->user->identity->email . ')',
             'url' => ['/site/logout'],
             'linkOptions' => [
                 'data-method' => 'post'
