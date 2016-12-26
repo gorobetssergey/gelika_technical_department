@@ -51,4 +51,8 @@ class Role extends \yii\db\ActiveRecord
     {
         return $this->hasMany(User::className(), ['role' => 'id']);
     }
+    public function getProba($id)// proba
+    {
+        return $id*2;
+    }
 }

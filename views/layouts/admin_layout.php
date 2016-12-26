@@ -1,15 +1,9 @@
 <?php
-
-/* @var $this \yii\web\View */
-/* @var $content string */
-
-
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use app\assets\AdminAsset;
 use app\models\User;
-
 AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -28,13 +22,12 @@ AdminAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'GELIKA',
+        'brandLabel' => 'ПМП "Геліка"',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-
     $menuItems = [];
     if(Yii::$app->user->isGuest):
         $menuItems[]=[
@@ -60,7 +53,6 @@ AdminAsset::register($this);
             ]
         ];
     endif;
-
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
@@ -71,15 +63,12 @@ AdminAsset::register($this);
         <?= $content ?>
     </div>
 </div>
-
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
-
 <?php $this->endBody() ?>
 </body>
 </html>

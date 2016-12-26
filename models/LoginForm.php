@@ -19,11 +19,6 @@ class LoginForm extends Model
     public $rememberMe = true;
 
     private $_user = false;
-
-
-    /**
-     * @return array the validation rules.
-     */
     public function rules()
     {
         return [
@@ -53,11 +48,6 @@ class LoginForm extends Model
             }
         }
     }
-
-    /**
-     * Logs in a user using the provided username and password.
-     * @return bool whether the user is logged in successfully
-     */
     public function login()
     {
         if ($this->validate()) {

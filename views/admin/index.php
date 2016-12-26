@@ -5,4 +5,4 @@ use yii\helpers\Html;
 
 $this->title = 'My Yii Application';
 ?>
-<h2>Адмінка</h2>
+<h2>Привіт, Адмістратор</h2> <?=$hhh?>

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Demention;
+use app\models\Role;
 use Yii;
 use yii\db\Exception;
 use yii\filters\AccessControl;
@@ -74,7 +75,11 @@ class AdminController extends \yii\web\Controller
 
     public function actionIndex()
     {
-            return $this->render('index');
+            $ob=new Role();//
+            $id=15;
+            return $this->render('index', [
+                    'hhh'=>$ob->getProba($id)
+            ]);
     }
 
     public function actionAdd_demention()

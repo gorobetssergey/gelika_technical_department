@@ -14,19 +14,19 @@ class m161209_221341_create_material extends Migration
         $this->createTable('material',[
             'id' => $this->primaryKey(),
             'name' => $this->string(50)->notNull(),
-            'demention' => $this->integer(11)->notNull()
+            'demention1' => $this->integer(11)->notNull()
         ]);
         $this->createIndex(
-            'id_demention',
-            'material',
-            'demention'
+            'id_demention',//довільне імя індекса
+            'material',//назва таблиці
+            'demention1'//куди вставлятиметься ссилка
         );
         $this->addForeignKey(
-            'fx_demention',
-            'material',
-            'demention',
-            'demention',
-            'id',
+            'fx_demention',//назва ключа довільно
+            'material',//назва таблиці, куди вставлятиметьс ссилка
+            'demention1',//поле, яке становлює звязок
+            'demention', //назва таблиці, в яку йде ссилка
+            'id',  // поле з яким встан щвязок
             'CASCADE'
         );
     }
