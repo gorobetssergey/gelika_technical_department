@@ -1,31 +1,49 @@
 <?php
+
 namespace app\models;
+
 use Yii;
+
+/**
+ * This is the model class for table "material".
+ *
+ * @property integer $id
+ * @property string $name_mat
+ * @property string $name_dem
+ * @property integer $weight
+ */
 class Material extends \yii\db\ActiveRecord
 {
+    /**
+     * @inheritdoc
+     */
     public static function tableName()
     {
         return 'material';
     }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
-            [['name', 'demention'], 'required'],
-            [['demention'], 'integer'],
-            [['name'], 'string', 'max' => 50],
-            [['demention'], 'exist', 'skipOnError' => true, 'targetClass' => Demention::className(), 'targetAttribute' => ['demention' => 'id']],
+            [['name_mat', 'name_dem', 'weight'], 'required'],
+            [['weight'], 'integer'],
+            [['name_mat', 'name_dem'], 'string', 'max' => 50],
         ];
     }
+
+    /**
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'demention' => 'Demention',
+            'name_mat' => 'Назва матеріалу',
+            'name_dem' => 'Одиниця виміру',
+            'weight' => 'Вага за одиницю',
         ];
-    }
-    public function getDemention0()
-    {
-        return $this->hasOne(Demention::className(), ['id' => 'demention']);
     }
 }

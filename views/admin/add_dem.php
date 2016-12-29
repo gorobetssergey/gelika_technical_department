@@ -12,7 +12,7 @@ use yii\helpers\Html;
 
 				<?php $form = ActiveForm::begin(); ?>
 
-				<?= $form->field($model, 'name')->textInput() ?>
+				<?= $form->field($model, 'name_mat')->textInput() ?>
 				<div class="center">
 					<?= Html::submitButton('Додати', ['class' => 'btn btn-primary']) ?>
 				</div>

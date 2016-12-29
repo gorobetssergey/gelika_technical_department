@@ -85,7 +85,7 @@ class AdminController extends \yii\web\Controller
 
     public function actionAdd_dem()
     {
-        $model=new Demention();
+        $model=new Material();
         if(Yii::$app->request->isPost)
         {
             $post = Yii::$app->request->post();
@@ -99,21 +99,6 @@ class AdminController extends \yii\web\Controller
             'model'=>$model
         ]);
     }
-    public function actionAdd_mat()
-    {
-        $model = new Material();
-        if (Yii::$app->request->isPost) {
-            $post = Yii::$app->request->post();
-            if ($model->load($post) && $model->validate()):
-                if ($model->save()):
-                    return $this->redirect(Url::toRoute('index'));
-                endif;
-            endif;
-        }
-        return $this->render('add_mat',[
-            'model'=>$model
-        ]);
-
-    }
+    
 
 }

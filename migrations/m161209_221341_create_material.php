@@ -6,17 +6,20 @@ class m161209_221341_create_material extends Migration
 {
     public function safeUp()
     {
-        $this->createTable('demention',[
+       $this->createTable('material',[
             'id' => $this->primaryKey(),
-            'name' => $this->string(10)->notNull(),
+            'name_mat' => $this->string(50)->notNull(),
+            'name_dem' => $this->string(50)->notNull(),
+            'weight' => $this->integer(4)->notNull(),
         ]);
 
-        $this->createTable('material',[
+        /*$this->createTable('material',[
             'id' => $this->primaryKey(),
             'name' => $this->string(50)->notNull(),
-            'demention1' => $this->integer(11)->notNull()
+            'dem_name' => $this->string(50)->notNull(),
+            'dem'=>$this->integer(11)->notNull(),
         ]);
-        $this->createIndex(
+        /*$this->createIndex(
             'id_demention',//довільне імя індекса
             'material',//назва таблиці
             'demention1'//куди вставлятиметься ссилка
@@ -28,12 +31,12 @@ class m161209_221341_create_material extends Migration
             'demention', //назва таблиці, в яку йде ссилка
             'id',  // поле з яким встан щвязок
             'CASCADE'
-        );
+        );*/
     }
 
     public function safeDown()
     {
         $this->dropTable('material');
-        $this->dropTable('dem');
+       /* $this->dropTable('dem');*/
     }
 }
