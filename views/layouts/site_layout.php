@@ -52,6 +52,7 @@ SiteAsset::register($this);
         if(Yii::$app->user->identity->role==User::ROLE_ADMIN):
             $menuItems[] = [
                 'label' => 'Адмінка', 'url' => ['/admin/index'],
+
             ];
         endif;
         $menuItems[]=[

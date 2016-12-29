@@ -42,7 +42,9 @@ AdminAsset::register($this);
         if(Yii::$app->user->identity->role==User::ROLE_ADMIN):
             $menuItems[] = [
                 'label' => 'Адмінка', 'url' => ['/admin/index'],
-                'label' => 'Додати од. виміру', 'url' => ['/admin/add_demention'],
+                /*'label' => 'Додати од. виміру', 'url' => ['/admin/add_dem'],*/
+
+
             ];
         endif;
         $menuItems[]=[

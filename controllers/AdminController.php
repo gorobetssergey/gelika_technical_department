@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Demention;
+use app\models\Material;
 use app\models\Role;
 use Yii;
 use yii\db\Exception;
@@ -23,7 +24,7 @@ class AdminController extends \yii\web\Controller
                     'rules' => [
                         [
                             'actions' => [
-                                'index', 'add_demention'
+                                'index', 'add_dem'
                             ],
                             'allow' => true,
                             'roles' => ['@'],
@@ -75,14 +76,14 @@ class AdminController extends \yii\web\Controller
 
     public function actionIndex()
     {
-            $ob=new Role();//
-            $id=15;
-            return $this->render('index', [
-                    'hhh'=>$ob->getProba($id)
-            ]);
+           // $ob=new Role();
+          //  $id1=785;
+            return $this->render('index'/*, [
+                    'hhh'=>$ob->getProba($id1)
+            ]*/);
     }
 
-    public function actionAdd_demention()
+    public function actionAdd_dem()
     {
         $model=new Demention();
         if(Yii::$app->request->isPost)
@@ -94,9 +95,25 @@ class AdminController extends \yii\web\Controller
                 endif;
             endif;
         }
-
         return $this->render('add_dem',[
             'model'=>$model
         ]);
     }
+    public function actionAdd_mat()
+    {
+        $model = new Material();
+        if (Yii::$app->request->isPost) {
+            $post = Yii::$app->request->post();
+            if ($model->load($post) && $model->validate()):
+                if ($model->save()):
+                    return $this->redirect(Url::toRoute('index'));
+                endif;
+            endif;
+        }
+        return $this->render('add_mat',[
+            'model'=>$model
+        ]);
+
+    }
+
 }
