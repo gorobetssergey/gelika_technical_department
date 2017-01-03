@@ -29,7 +29,7 @@ class Material extends \yii\db\ActiveRecord
     {
         return [
             [['name_mat', 'name_dem', 'weight'], 'required'],
-            [['weight'], 'integer'],
+            [['weight'], 'double'],
             [['name_mat', 'name_dem'], 'string', 'max' => 50],
         ];
     }
@@ -41,9 +41,9 @@ class Material extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name_mat' => 'Назва матеріалу',
-            'name_dem' => 'Одиниця виміру',
-            'weight' => 'Вага за одиницю',
+            'name_mat' => 'Назва матеріалу:',
+            'name_dem' => 'Одиниця виміру:',
+            'weight' => 'Вага за од.виміру, кг:',
         ];
     }
 }

@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use app\models\Demention;
+use app\models\Farbacolor;
 use app\models\Material;
+use app\models\Porolon;
 use app\models\Role;
 use Yii;
 use yii\db\Exception;
@@ -24,7 +26,7 @@ class AdminController extends \yii\web\Controller
                     'rules' => [
                         [
                             'actions' => [
-                                'index', 'add_dem'
+                                'index', 'add_dem', 'add_far', 'add_por'
                             ],
                             'allow' => true,
                             'roles' => ['@'],
@@ -96,6 +98,38 @@ class AdminController extends \yii\web\Controller
             endif;
         }
         return $this->render('add_dem',[
+            'model'=>$model
+        ]);
+    }
+    public function actionAdd_far()
+    {
+        $model=new Farbacolor();
+        if(Yii::$app->request->isPost)
+        {
+            $post = Yii::$app->request->post();
+            if($model->load($post) && $model->validate()):
+                if($model->save()):
+                    return $this->redirect(Url::toRoute('index'));
+                endif;
+            endif;
+        }
+        return $this->render('add_far',[
+            'model'=>$model
+        ]);
+    }
+    public function actionAdd_por()
+    {
+        $model=new Porolon();
+        if(Yii::$app->request->isPost)
+        {
+            $post = Yii::$app->request->post();
+            if($model->load($post) && $model->validate()):
+                if($model->save()):
+                    return $this->redirect(Url::toRoute('index'));
+                endif;
+            endif;
+        }
+        return $this->render('add_por',[
             'model'=>$model
         ]);
     }

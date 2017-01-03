@@ -10,7 +10,7 @@ class m161209_221341_create_material extends Migration
             'id' => $this->primaryKey(),
             'name_mat' => $this->string(50)->notNull(),
             'name_dem' => $this->string(50)->notNull(),
-            'weight' => $this->integer(4)->notNull(),
+            'weight' => $this->double(4)->notNull(),
         ]);
 
         /*$this->createTable('material',[
