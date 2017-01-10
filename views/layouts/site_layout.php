@@ -48,6 +48,9 @@ SiteAsset::register($this);
             'label' => 'Реєстрація',
             'url' => ['/site/reg']
         ];
+
+
+
     else:
         if(Yii::$app->user->identity->role==User::ROLE_ADMIN):
             $menuItems[] = [
@@ -55,13 +58,16 @@ SiteAsset::register($this);
 
             ];
         endif;
+
         $menuItems[]=[
             'label' => 'Вийти (' . Yii::$app->user->identity->email . ')',
             'url' => ['/site/logout'],
             'linkOptions' => [
                 'data-method' => 'post'
             ]
+
         ];
+
     endif;
 
     echo Nav::widget([

@@ -6,6 +6,7 @@ use app\models\Demention;
 use app\models\Farbacolor;
 use app\models\Material;
 use app\models\Porolon;
+use app\models\Vugle;
 use app\models\Role;
 use Yii;
 use yii\db\Exception;
@@ -26,7 +27,7 @@ class AdminController extends \yii\web\Controller
                     'rules' => [
                         [
                             'actions' => [
-                                'index', 'add_dem', 'add_far', 'add_por'
+                                'index', 'add_dem', 'add_far', 'add_por', 'add_vug'
                             ],
                             'allow' => true,
                             'roles' => ['@'],
@@ -133,6 +134,21 @@ class AdminController extends \yii\web\Controller
             'model'=>$model
         ]);
     }
-    
+    public function actionAdd_vug()
+    {
+        $model=new Vugle();
+        if(Yii::$app->request->isPost)
+        {
+            $post = Yii::$app->request->post();
+            if($model->load($post) && $model->validate()):
+                if($model->save()):
+                    return $this->redirect(Url::toRoute('index'));
+                endif;
+            endif;
+        }
+        return $this->render('add_vug',[
+            'model'=>$model
+        ]);
+    }
 
 }
